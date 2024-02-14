@@ -1,10 +1,7 @@
 package org.iesvdm.jpa.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.boot.context.properties.bind.ConstructorBinding;
 
 import java.io.Serializable;
@@ -14,7 +11,6 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Pelicula_Actor {
     @Embeddable
