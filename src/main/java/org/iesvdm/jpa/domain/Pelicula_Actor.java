@@ -33,7 +33,6 @@ public class Pelicula_Actor {
     @EmbeddedId
     @EqualsAndHashCode.Include
     Pk id;
-    Date ultima_modificacion;
     public Pelicula_Actor(Actor a,Pelicula p){
         id=new Pk(a,p);
     }
