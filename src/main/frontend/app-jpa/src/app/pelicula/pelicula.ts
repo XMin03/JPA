@@ -1,5 +1,5 @@
 export interface Pelicula {
-  id: number;
+  id_pelicula: number;
 
   titulo: string;
 

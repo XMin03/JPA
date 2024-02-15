@@ -5,6 +5,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {HttpClientModule} from "@angular/common/http";
 import {PeliculaModule} from "./pelicula/pelicula.module";
 import {AppRoutingModule} from "./app-routing.module";
+import {CategoriaModule} from "./categoria/categoria.module";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {AppRoutingModule} from "./app-routing.module";
     AppRoutingModule,
     NgbModule,
     PeliculaModule,
+    CategoriaModule,
     HttpClientModule
   ],
   providers: [],

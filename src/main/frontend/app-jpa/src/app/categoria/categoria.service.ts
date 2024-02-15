@@ -11,7 +11,7 @@ import { Categoria } from './categoria';
 })
 export class CategoriaService {
 
-  private apiURL = "http://localhost:8080/api/............¿?";
+  private apiURL = "http://localhost:8080/categorias";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -50,7 +50,7 @@ export class CategoriaService {
   }
 
   delete(id: number){
-    return this.httpClient.delete<Categoria>(this.apiURL + id, this.httpOptions)
+    return this.httpClient.delete<Categoria>(this.apiURL +"/"+ id, this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )

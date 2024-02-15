@@ -27,7 +27,7 @@ export class PeliculaService {
       )
   }
   delete(id: number){
-    return this.httpClient.delete<Pelicula>(this.apiURL + id, this.httpOptions)
+    return this.httpClient.delete<Pelicula>(this.apiURL +"/"+ id, this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )
