@@ -1,7 +1,7 @@
 package org.iesvdm.jpa.service;
 
 import org.iesvdm.jpa.domain.Categoria;
-import org.iesvdm.jpa.exeption.CategoriaNotFoundException;
+import org.iesvdm.jpa.exception.CategoriaNotFoundException;
 import org.iesvdm.jpa.repository.CategoriaRepository;
 import org.springframework.stereotype.Service;
 

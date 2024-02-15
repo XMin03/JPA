@@ -1,4 +1,4 @@
-package org.iesvdm.jpa.exeption;
+package org.iesvdm.jpa.exception;
 
 public class CategoriaNotFoundException extends RuntimeException{
     public CategoriaNotFoundException(Long id) {
