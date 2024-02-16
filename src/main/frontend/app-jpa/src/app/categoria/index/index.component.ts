@@ -22,7 +22,7 @@ export class IndexComponent implements OnInit {
 
   deleteCategoria(id: any){
     this.categoriaService.delete(id).subscribe(res => {
-      this.categorias = this.categorias.filter(cat => cat.id_categoria !== id);
+      this.categorias = this.categorias.filter(cat => cat.id !== id);
       console.log('Categoria id =' + id + ' eliminada satisfactoriamente!');
     })
   }

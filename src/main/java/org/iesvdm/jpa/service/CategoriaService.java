@@ -29,7 +29,7 @@ public class CategoriaService {
 
     public Categoria replace(Long id, Categoria categoria) {
 
-        return this.categoriaRepository.findById(id).map( p -> (id.equals(categoria.getId_categoria())  ?
+        return this.categoriaRepository.findById(id).map( p -> (id.equals(categoria.getId())  ?
                         this.categoriaRepository.save(categoria) : null))
                 .orElseThrow(() -> new CategoriaNotFoundException(id));
 

@@ -26,7 +26,7 @@ export class CreateComponent implements OnInit {
   submit(){
     console.log(this.form.value);
     this.peliculaService.create(this.form.value).subscribe(res => {
-      console.log('Pelicula creada correctamente! + res');
+      console.log('Pelicula creada correctamente!');
       this.router.navigateByUrl('pelicula/index').then();
     })
   }

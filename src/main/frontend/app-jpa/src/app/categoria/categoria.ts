@@ -1,8 +1,12 @@
+import {Pelicula} from "../pelicula/pelicula";
+
 export interface Categoria {
 
-  id_categoria: number;
+  id: number;
 
   nombre: string;
+
+  peliculas:Pelicula[]|null;
 
   ultimaActualizacion: string
 

@@ -1,8 +1,10 @@
+import {Idioma} from "../idioma/idioma";
+
 export interface Pelicula {
-  id_pelicula: number;
+  id: number;
 
   titulo: string;
 
-  idioma_id: number;
+  idioma: Idioma|null;
 
 }

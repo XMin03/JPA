@@ -21,7 +21,7 @@ export class IndexComponent implements OnInit{
 
   deleteCategoria(id: any){
     this.peliculaService.delete(id).subscribe(res => {
-      this.peliculas = this.peliculas.filter(pel => pel.id_pelicula !== id);
+      this.peliculas = this.peliculas.filter(pel => pel.id !== id);
       console.log('Pelicula id =' + id + ' eliminada satisfactoriamente!');
     })
   }
