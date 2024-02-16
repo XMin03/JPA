@@ -28,7 +28,7 @@ public class CategoriaSerializer  extends StdSerializer<Categoria> {
             throws IOException, JsonProcessingException {
         jgen.writeStartObject();
         jgen.writeNumberField("id", categoria.getId());
-        jgen.writeStringField("titulo", categoria.getNombre());
+        jgen.writeStringField("nombre", categoria.getNombre());
         jgen.writeFieldName("peliculas");
         jgen.writeObject(categoria.getPeliculas());
         jgen.writeEndObject();

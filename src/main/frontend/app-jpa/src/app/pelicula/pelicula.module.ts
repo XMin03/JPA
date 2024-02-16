@@ -6,6 +6,7 @@ import {EditComponent} from "./edit/edit.component";
 import {CreateComponent} from "./create/create.component";
 import {IndexComponent} from "./index/index.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {Select2Module} from "ng-select2-component";
 
 
 @NgModule({
@@ -14,11 +15,12 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     CreateComponent,
     EditComponent
   ],
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    CommonModule,
-    PeliculaRoutingModule
-  ]
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        CommonModule,
+        PeliculaRoutingModule,
+        Select2Module
+    ]
 })
 export class PeliculaModule { }
