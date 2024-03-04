@@ -23,6 +23,8 @@ class JPAApplicationTests {
     IdiomaRepository idiomaRepository;
     @Autowired
     PeliculaActorRepository peliculaActorRepository;
+    @Autowired
+    CatecoriaCustomRepositoryImpl customRepository;
     @Test
     void contextLoads() {
     }
@@ -65,5 +67,4 @@ class JPAApplicationTests {
         actorRepository.save(actor1);
         actorRepository.save(actor2);
     }
-
 }

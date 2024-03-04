@@ -2,18 +2,25 @@ package org.iesvdm.jpa.service;
 
 import org.iesvdm.jpa.domain.Categoria;
 import org.iesvdm.jpa.exception.CategoriaNotFoundException;
+import org.iesvdm.jpa.repository.CatecoriaCustomRepositoryImpl;
 import org.iesvdm.jpa.repository.CategoriaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoriaService {
     private final CategoriaRepository categoriaRepository;
-    public CategoriaService(CategoriaRepository categoriaRepository) {
+    private final CatecoriaCustomRepositoryImpl customRepository;
+    public CategoriaService(CategoriaRepository categoriaRepository, CatecoriaCustomRepositoryImpl customRepository) {
         this.categoriaRepository = categoriaRepository;
+        this.customRepository = customRepository;
     }
-
+    public List<Categoria> allByFilter(Optional<String> buscar, Optional<String> order,int pagina,int tamaño) {
+        this.customRepository.queryCustomCategoria(buscar,order);
+        return null;
+    }
     public List<Categoria> all() {
         return this.categoriaRepository.findAll();
     }
