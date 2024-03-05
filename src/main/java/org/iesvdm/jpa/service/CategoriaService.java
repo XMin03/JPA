@@ -4,9 +4,15 @@ import org.iesvdm.jpa.domain.Categoria;
 import org.iesvdm.jpa.exception.CategoriaNotFoundException;
 import org.iesvdm.jpa.repository.CatecoriaCustomRepositoryImpl;
 import org.iesvdm.jpa.repository.CategoriaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -17,9 +23,32 @@ public class CategoriaService {
         this.categoriaRepository = categoriaRepository;
         this.customRepository = customRepository;
     }
-    public List<Categoria> allByFilter(Optional<String> buscar, Optional<String> order,int pagina,int tamaño) {
-        this.customRepository.queryCustomCategoria(buscar,order);
-        return null;
+    public Map<String,Object> allByFilter(Optional<String> buscar, Optional<String> order,int pagina,int tamaño) {
+        Pageable p= PageRequest.of(pagina,tamaño);
+        List<Categoria> list=this.customRepository.queryCustomCategoria(buscar,order);
+        Page<Categoria> page=convertToPage(list,p);
+        Map<String,Object> res=new HashMap<>();
+        res.put("peliculas",page.getContent());
+        res.put("currentPage",page.getNumber());
+        res.put("totalItems",page.getTotalElements());
+        res.put("totalPages",page.getTotalPages());
+        return res;
+    }
+    public static <T> Page<T> convertToPage(List<T> list, Pageable pageable) {
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+
+        List<T> pageList;
+
+        if (list.size() < startItem) {
+            pageList = List.of();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, list.size());
+            pageList = list.subList(startItem, toIndex);
+        }
+
+        return new PageImpl<>(pageList, pageable, list.size());
     }
     public List<Categoria> all() {
         return this.categoriaRepository.findAll();
