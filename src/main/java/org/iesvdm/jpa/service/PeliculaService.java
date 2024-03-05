@@ -27,16 +27,17 @@ public class PeliculaService {
         this.customRepository = customRepository;
     }
 
-    public Map<String,Object> all(String[] order,int[] pagina) {
+    public Page<Pelicula> all(String[] order,int[] pagina) {
         Pageable p= PageRequest.of(pagina[0], pagina[1]);
         List<Pelicula> list=this.customRepository.queryCustomPelicula(order);
         Page<Pelicula> page= ListToPage.convertToPage(list,p);
+        /*
         Map<String,Object> res=new HashMap<>();
         res.put("peliculas",page.getContent());
         res.put("currentPage",page.getNumber());
         res.put("totalItems",page.getTotalElements());
-        res.put("totalPages",page.getTotalPages());
-        return res;
+        res.put("totalPages",page.getTotalPages());*/
+        return page;
     }
 
     public Pelicula save(Pelicula pelicula) {

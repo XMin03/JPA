@@ -22,9 +22,7 @@ public class CatecoriaCustomRepositoryImpl implements CatecoriaCustomRepository{
             queryBuilder.append(" order by c.nombre ").append(ordenar.get());
         }
         Query query=em.createQuery(queryBuilder.toString());
-        if (buscar.isPresent()){
-            query.setParameter("buscar", "%"+buscar.get()+"%");
-        }
+        buscar.ifPresent(s -> query.setParameter("buscar", "%" + s + "%"));
         return query.getResultList();
     }
 }

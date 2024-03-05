@@ -24,16 +24,17 @@ public class CategoriaService {
         this.categoriaRepository = categoriaRepository;
         this.customRepository = customRepository;
     }
-    public Map<String,Object> allByFilter(Optional<String> buscar, Optional<String> order,int pagina,int tamaño) {
+    public Page<Categoria> allByFilter(Optional<String> buscar, Optional<String> order,int pagina,int tamaño) {
         Pageable p= PageRequest.of(pagina,tamaño);
         List<Categoria> list=this.customRepository.queryCustomCategoria(buscar,order);
         Page<Categoria> page= ListToPage.convertToPage(list,p);
+        /* no lo veo necesario si no es para ver las informaciones en json.
         Map<String,Object> res=new HashMap<>();
         res.put("categorias",page.getContent());
         res.put("currentPage",page.getNumber());
         res.put("totalItems",page.getTotalElements());
-        res.put("totalPages",page.getTotalPages());
-        return res;
+        res.put("totalPages",page.getTotalPages());*/
+        return page;
     }
 
     public List<Categoria> all() {

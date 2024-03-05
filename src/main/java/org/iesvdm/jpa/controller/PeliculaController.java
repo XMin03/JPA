@@ -3,6 +3,7 @@ package org.iesvdm.jpa.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.iesvdm.jpa.domain.Pelicula;
 import org.iesvdm.jpa.service.PeliculaService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +23,8 @@ public class PeliculaController {
     }
 
     @GetMapping({"","/"})
-    public Map<String,Object> all(@RequestParam(value = "orden",defaultValue = "id,asc") String[] order,
-                                  @RequestParam(value = "pagina",defaultValue = "0,3") int[] pagina) {
+    public Page<Pelicula> all(@RequestParam(value = "orden",defaultValue = "id,asc") String[] order,
+                              @RequestParam(value = "pagina",defaultValue = "0,3") int[] pagina) {
         log.info("Accediendo a todas las películas");
         return this.peliculaService.all(order,pagina);
     }

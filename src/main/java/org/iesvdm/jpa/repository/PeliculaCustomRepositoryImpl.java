@@ -25,10 +25,11 @@ public class PeliculaCustomRepositoryImpl implements PeliculaCustomRepository{
                 .split(",");//convertir en array.
         queryBuilder.append(" order by ");
         for (int i = 0; i < fieldValue.length; i++) {
-            //si es primera vez no pone ,
+            //si es primera vez no pone ","
             if (i!=0){
                 queryBuilder.append(",");
             }
+            //pone el campo y el sentido
             queryBuilder.append(" p."+fieldValue[i++]+" "+fieldValue[i]);
         }
         Query query=em.createQuery(queryBuilder.toString());

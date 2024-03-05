@@ -3,6 +3,7 @@ package org.iesvdm.jpa.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.iesvdm.jpa.domain.Categoria;
 import org.iesvdm.jpa.service.CategoriaService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,10 +28,10 @@ public class CategoriaController {
         return this.categoriaService.all();
     }
     @GetMapping({"","/"})
-    public Map<String,Object> all(@RequestParam("buscar")Optional<String> buscar,
-                                  @RequestParam("ordenar")Optional<String> ordenar,
-                                  @RequestParam(value = "pagina",defaultValue = "0")int pagina,
-                                  @RequestParam(value = "tamanio",defaultValue = "3")int tamanio) {
+    public Page<Categoria> all(@RequestParam("buscar")Optional<String> buscar,
+                               @RequestParam("ordenar")Optional<String> ordenar,
+                               @RequestParam(value = "pagina",defaultValue = "0")int pagina,
+                               @RequestParam(value = "tamanio",defaultValue = "3")int tamanio) {
         log.info("Accediendo a todas las categorias con filtro buscar: %s y ordenar: %s",buscar.orElse("VOID"),ordenar.orElse("VOID"));
         return this.categoriaService.allByFilter(buscar,ordenar,pagina,tamanio);
     }
