@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -20,9 +22,10 @@ public class PeliculaController {
     }
 
     @GetMapping({"","/"})
-    public List<Pelicula> all() {
+    public Map<String,Object> all(@RequestParam(value = "orden",defaultValue = "id,asc") String[] order,
+                                  @RequestParam(value = "pagina",defaultValue = "0,3") int[] pagina) {
         log.info("Accediendo a todas las películas");
-        return this.peliculaService.all();
+        return this.peliculaService.all(order,pagina);
     }
 
     @PostMapping({"","/"})
