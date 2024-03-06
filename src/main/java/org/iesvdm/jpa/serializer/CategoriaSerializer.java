@@ -30,7 +30,7 @@ public class CategoriaSerializer  extends StdSerializer<Categoria> {
         jgen.writeNumberField("id", categoria.getId());
         jgen.writeStringField("nombre", categoria.getNombre());
         jgen.writeFieldName("peliculas");
-        jgen.writeObject(categoria.getPeliculas());
+        jgen.writeObject(categoria.getPeliculas().stream().map(Pelicula::getId));
         jgen.writeEndObject();
     }
 }
