@@ -23,8 +23,6 @@ class JPAApplicationTests {
     IdiomaRepository idiomaRepository;
     @Autowired
     PeliculaActorRepository peliculaActorRepository;
-    @Autowired
-    CatecoriaCustomRepositoryImpl customRepository;
     @Test
     void contextLoads() {
     }

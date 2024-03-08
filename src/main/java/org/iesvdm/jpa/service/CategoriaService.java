@@ -2,38 +2,21 @@ package org.iesvdm.jpa.service;
 
 import org.iesvdm.jpa.domain.Categoria;
 import org.iesvdm.jpa.exception.CategoriaNotFoundException;
-import org.iesvdm.jpa.repository.CatecoriaCustomRepositoryImpl;
 import org.iesvdm.jpa.repository.CategoriaRepository;
-import org.iesvdm.jpa.util.ListToPage;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class CategoriaService {
     private final CategoriaRepository categoriaRepository;
-    private final CatecoriaCustomRepositoryImpl customRepository;
-    public CategoriaService(CategoriaRepository categoriaRepository, CatecoriaCustomRepositoryImpl customRepository) {
+    public CategoriaService(CategoriaRepository categoriaRepository) {
         this.categoriaRepository = categoriaRepository;
-        this.customRepository = customRepository;
     }
-    public Page<Categoria> allByFilter(Optional<String> buscar, Optional<String> order,int pagina,int tamaño) {
-        Pageable p= PageRequest.of(pagina,tamaño);
-        List<Categoria> list=this.customRepository.queryCustomCategoria(buscar,order);
-        Page<Categoria> page= ListToPage.convertToPage(list,p);
-        /* no lo veo necesario si no es para ver las informaciones en json.
-        Map<String,Object> res=new HashMap<>();
-        res.put("categorias",page.getContent());
-        res.put("currentPage",page.getNumber());
-        res.put("totalItems",page.getTotalElements());
-        res.put("totalPages",page.getTotalPages());*/
+    public Page<Categoria> allByFilter(String buscar, Pageable pageable) {
+        Page<Categoria> page=this.categoriaRepository.findCategoriaByNombreContainingIgnoreCase(buscar,pageable);
         return page;
     }
 

@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.iesvdm.jpa.domain.Categoria;
 import org.iesvdm.jpa.service.CategoriaService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,18 +23,16 @@ public class CategoriaController {
         this.categoriaService = categoriaService;
     }
 
-    @GetMapping(value = {"","/"},params = {"!buscar","!ordenar","!pagina","!tamanio"})
+    @GetMapping(value = {"","/"},params = {"!buscar","!ordenar"})
     public List<Categoria> all() {
         log.info("Accediendo a todas las categorias");
         return this.categoriaService.all();
     }
     @GetMapping({"","/"})
-    public Page<Categoria> all(@RequestParam("buscar")Optional<String> buscar,
-                               @RequestParam("ordenar")Optional<String> ordenar,
-                               @RequestParam(value = "pagina",defaultValue = "0")int pagina,
-                               @RequestParam(value = "tamanio",defaultValue = "3")int tamanio) {
-        log.info("Accediendo a todas las categorias con filtro buscar: %s y ordenar: %s",buscar.orElse("VOID"),ordenar.orElse("VOID"));
-        return this.categoriaService.allByFilter(buscar,ordenar,pagina,tamanio);
+    public Page<Categoria> all(@RequestParam("buscar")String buscar,
+                               Pageable pageable) {
+        log.info("Accediendo a todas las categorias con filtro buscando: "+buscar);
+        return this.categoriaService.allByFilter(buscar,pageable);
     }
     @PostMapping({"","/"})
     public Categoria save(@RequestBody Categoria categoria) {
